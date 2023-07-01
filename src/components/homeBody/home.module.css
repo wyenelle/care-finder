@@ -1,0 +1,56 @@
+.container{
+    /* border: 2px solid black; */
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+.text{
+    /* border: 2px solid black; */
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+}
+.img{
+    border: 2px solid black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+.imgBox{
+    border: 2px solid blue;
+    height: 100%;
+    width: 100%;
+}
+.imgContainer{
+    border: 2px solid blue;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+}
+.box{
+    border: 2px solid black;
+    height: 100%;
+}
+.img2{
+    width: 100%;
+    height: 50%;
+}
+@media screen and (min-width:768px){
+    .container{
+        display: flex;
+        flex-direction: row;
+    }
+    .text{
+        display: flex;
+        /* justify-content: center; */
+        align-items: center;
+    }
+   .text div{
+        width: 70%;
+    }
+}
