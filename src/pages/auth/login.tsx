@@ -1,7 +1,7 @@
 import styles from './login.module.css'
 import { useState } from "react";
 import { auth, googleProvider } from "../../config/firebase";
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword,signInWithPopup } from 'firebase/auth';
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -15,6 +15,13 @@ const Login = () => {
             console.log(err);
         }
     }
+    const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <section className={styles.container}>
@@ -47,13 +54,9 @@ const Login = () => {
           submit
         </button>
 
-        {/* <div className={styles.socialMediaLogin}>
+         <div className={styles.socialMediaLogin}>
           <button onClick={signInWithGoogle}>sign in with google</button>
-        </div> */}
-        {/* <button onClick={logout}>
-          log out
-        </button>
-         */}
+        </div> 
       </form>
     </section>
   )

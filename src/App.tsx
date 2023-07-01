@@ -11,6 +11,8 @@ import { auth,db } from "./config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDocs, collection,deleteDoc,doc,updateDoc } from "firebase/firestore";
 import Login from "./pages/auth/login";
+
+
 function App() {
   const [hospitalsList, setHospitalList] = useState([]);
   const [updatedInfo,setUpdatedInfo] = useState({
@@ -40,11 +42,13 @@ function App() {
       console.error(err);
     }
   };
+
   // delete an entry
   const deleteHospital = async (id) => {
     const hospitalRef = doc(db,'hospitals',id)
     await deleteDoc(hospitalRef)
   }
+
   // update an entry
   const updateHospitalData  = async (id) => {
     const hospitalRef = doc(db,'hospitals',id)
@@ -52,26 +56,25 @@ function App() {
     getHospital()
 
   }
+
   useEffect(() => {
     getHospital();
   }, []);
 
+  const get_user = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const uid = user.uid;
+      console.log(uid);
+      
+    } else {
+      console.log(user);
+      
+    }
+  });
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/auth.user
-    const uid = user.uid;
-    console.log('hello')
-    // ...
-  } else {
-    // User is signed out
-    // ...
-  }
-});
   return (
     <main className={styles.container}>
-      <MyContext.Provider value={{ hospitalsList, getHospital,deleteHospital,updateHospitalData,updatedInfo,setUpdatedInfo }}>
+      <MyContext.Provider value={{ hospitalsList, getHospital,deleteHospital,updateHospitalData,updatedInfo,setUpdatedInfo,setHospitalList }}>
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />

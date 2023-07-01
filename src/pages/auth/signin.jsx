@@ -1,8 +1,7 @@
 import React from "react";
-import { auth, googleProvider } from "../../config/firebase";
+import { auth } from "../../config/firebase";
 import {
   createUserWithEmailAndPassword,
-  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { useState } from "react";
@@ -14,43 +13,38 @@ const SignIn = () => {
   // console.log(auth?.currentUser?.email); 
 
   // handes the submit button
-  // const signIn = async () => {
-  //   try {
-  //    const user =  await createUserWithEmailAndPassword(auth, email, password);
-  //    console.log(user.user);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-   function signIn(){
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(user)
-    // ...
-  })
-  .catch((error) => {
-    console.log(error.message) 
-    // ..
-  });
-}
-
-  // const signInWithGoogle = async () => {
-  //   try {
-  //     await signInWithPopup(auth, googleProvider);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  const logout = async () => {
+  const signIn = async () => {
     try {
-      await signOut(auth);
+       await createUserWithEmailAndPassword(auth, email, password);
     } catch (err) {
       console.error(err);
     }
   };
+
+  
+//    function signIn(){
+//   createUserWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // Signed in 
+//     const user = userCredential.user;
+//     console.log(user)
+//     // ...
+//   })
+//   .catch((error) => {
+//     console.log(error.message) 
+//     // ..
+//   });
+// }
+
+  
+
+  // const logout = async () => {
+  //   try {
+  //     await signOut(auth);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
   return (
     <section className={styles.container}>
       <form className={styles.form}>
