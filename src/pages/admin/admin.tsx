@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { db} from "../../config/firebase";
+import { db } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useContext } from "react";
 import MyContext from "../../context/context";
-import { getAuth } from "firebase/auth";
+import styles from "./admin.module.css";
 
 const Admin = () => {
   // stores all alues from the form
@@ -12,9 +12,12 @@ const Admin = () => {
     state: "",
     address: "",
     details: "",
+    email: "",
+    phone: "",
+    website: '',
+    image: ""
   });
-  const auth = getAuth()
-const user = auth.currentUser
+
   //  creates a references to the hospitals collection in our database
   const hospitalCollection = collection(db, "hospitals");
 
@@ -25,10 +28,8 @@ const user = auth.currentUser
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
-//   console.log(user);
-  
-  const handleSubmit = async () => {
 
+  const handleSubmit = async () => {
     try {
       // adds a new information to our db
       await addDoc(hospitalCollection, {
@@ -36,8 +37,12 @@ const user = auth.currentUser
         state: form.state,
         address: form.address,
         details: form.details,
-        // userId : auth?.currentUser?.uid
+        email: form.email,
+        phone: form.phone,
+        image: form.image,
+        website: form.website
       });
+
       console.log("submitted");
       getHospital();
     } catch (err) {
@@ -45,40 +50,96 @@ const user = auth.currentUser
     }
   };
   return (
-    <section>
-      <input
-        type="text"
-        placeholder="name"
-        name="hospital"
-        value={form.hospital}
-        onChange={handleInput}
-      />
-      <input
-        type="text"
-        placeholder="state"
-        name="state"
-        value={form.state}
-        onChange={handleInput}
-      />
-      <input
-        type="text"
-        placeholder="details"
-        name="details"
-        value={form.details}
-        onChange={handleInput}
-      />
-      <input
-        type="text"
-        placeholder="address"
-        name="address"
-        value={form.address}
-        onChange={handleInput}
-      />{" "}
-      <br />
-      <button style={{ padding: "10px" }} onClick={handleSubmit}>
-        {" "}
-        submit
-      </button>
+    <section className={styles.container}>
+      <h2>Add Hospitals you know</h2>
+      <div className={styles.wrapper}>
+        <div className={styles.formControl}>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            placeholder="John Doe Healthcare"
+            name="hospital"
+            id="name"
+            value={form.hospital}
+            onChange={handleInput}
+          />
+        </div>
+        <div className={styles.formControl}>
+          <label htmlFor="state">State</label>
+          <input
+            type="text"
+            placeholder="Lagos"
+            name="state"
+            id="state"
+            value={form.state}
+            onChange={handleInput}
+          />
+        </div>{" "}
+        <div className={styles.formControl}>
+          <label htmlFor="details">Details</label>
+          <input
+            type="text"
+            placeholder="details"
+            name="details"
+            id="details"
+            value={form.details}
+            onChange={handleInput}
+          />
+        </div>
+        <div className={styles.formControl}>
+          <label htmlFor="address">Address</label>
+          <input
+            type="text"
+            placeholder="address"
+            name="address"
+            id="address"
+            value={form.address}
+            onChange={handleInput}
+          />{" "}
+        </div>
+        
+        <div className={styles.formControl}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            placeholder="Johndoe@gmail.com"
+            name="email"
+            id="email"
+            value={form.email}
+            onChange={handleInput}
+          />{" "}
+        </div>
+
+        <div className={styles.formControl}>
+          <label htmlFor="url">Website</label>
+          <input
+            type="url"
+            placeholder="https://www.hospital.com"
+            name="website"
+            id="url"
+            value={form.website}
+            onChange={handleInput}
+          />{" "}
+        </div>
+        
+        <div className={styles.formControl}>
+          <label htmlFor="phone">Phone</label>
+          <input
+            type="tel"
+            placeholder="0000 000 0000"
+            name="phone"
+            id="phone"
+            value={form.phone}
+            onChange={handleInput}
+          />{" "}
+        </div>
+
+        <br />
+        <button className={styles.btn} onClick={handleSubmit}>
+          {" "}
+          submit
+        </button>
+      </div>
     </section>
   );
 };
