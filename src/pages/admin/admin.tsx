@@ -5,9 +5,20 @@ import { useContext } from "react";
 import MyContext from "../../context/context";
 import styles from "./admin.module.css";
 
+type Form = {
+  hospital: string,
+  state: string,
+  address: string,
+  details: string,
+  email: string,
+  phone: string,
+  website: string,
+  image: string,
+}
+
 const Admin = () => {
   // stores all alues from the form
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<Form> ({
     hospital: "",
     state: "",
     address: "",
@@ -24,7 +35,7 @@ const Admin = () => {
   // using Context to make available the function that handles fetching of data from the db to the global state
   const { getHospital } = useContext(MyContext);
   // this function handles user input on the form
-  const handleInput = (e) => {
+  const handleInput = (e : React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
