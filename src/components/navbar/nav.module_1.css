@@ -1,0 +1,13 @@
+.container{
+    /* border: 2px solid black; */
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.listWrapper{
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}

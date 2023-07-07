@@ -1,0 +1,39 @@
+.container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.wrapper{
+    /* border: 2px solid black; */
+    height: 80vh;
+    width: 100%;
+}
+.formControl{
+    /* border: 2px solid black; */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 1rem 0;
+}
+label{
+    font-size: 22px;
+    font-family: 'Kanit', sans-serif;
+}
+input{
+    height: 60px;
+    border-radius: 8px;
+}
+.btn{
+    width: 50%;
+    margin: auto;
+    padding: 10px;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 8px;
+}

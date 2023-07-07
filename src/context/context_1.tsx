@@ -1,15 +1,13 @@
-import React from "react";
-import styles from "./App.module.css";
-import Home from "./pages/home/home";
-import Nav from "./components/navbar/Nav";
-import SignIn from "./pages/auth/signin";
-import { Routes, Route } from "react-router-dom";
-import Hospital from "./pages/hospitals/hospital";
-import Admin from "./pages/admin/admin";
-import { useState, useEffect } from "react";
-import { MyContext } from "./context/context";
-import { auth, db } from "./config/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { db } from "../config/firebase";
 import {
   getDocs,
   collection,
@@ -17,7 +15,12 @@ import {
   doc,
   updateDoc,
 } from "firebase/firestore";
-import Login from "./pages/auth/login";
+
+// type MyContextType = {
+//     children: React.ReactNode,
+//     value: object
+// }
+
 export interface HospitalsDataType {
   state: string;
   name: string;
@@ -42,7 +45,19 @@ export const updatedInfoSchema: updatedInfoInterface = {
   details: "",
 };
 
-const App: React.FC = () => {
+export interface MyContextInterface {
+  hospitalsList: HospitalsDataType[];
+  deleteHospital: (id: string) => Promise<void>;
+  getHospital: () => Promise<void>;
+  updateHospitalData: (id: string) => Promise<void>;
+  setUpdatedInfo: Dispatch<SetStateAction<updatedInfoInterface>>;
+  updatedInfo: updatedInfoInterface;
+  setHospitalList: Dispatch<SetStateAction<HospitalsDataType[]>>;
+}
+
+export const MyContext = createContext<MyContextInterface | null>(null);
+
+const MyContextProvider = ({ children }: { children: ReactNode }) => {
   const [hospitalsList, setHospitalList] = useState<HospitalsDataType[]>([]);
   const [updatedInfo, setUpdatedInfo] =
     useState<updatedInfoInterface>(updatedInfoSchema);
@@ -91,40 +106,27 @@ const App: React.FC = () => {
     MyContext;
     getHospital();
   }, []);
-
-  const get_user = onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      console.log(uid);
-    } else {
-      console.log(user);
-    }
-  });
-
   return (
-    <main className={styles.container}>
-      <MyContext.Provider
-        value={{
-          hospitalsList,
-          getHospital,
-          deleteHospital,
-          updateHospitalData,
-          updatedInfo,
-          setUpdatedInfo,
-          setHospitalList,
-        }}
-      >
-        <Nav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/hospital" element={<Hospital />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </MyContext.Provider>
-    </main>
+    <MyContext.Provider
+      value={{
+        hospitalsList,
+        getHospital,
+        deleteHospital,
+        updateHospitalData,
+        updatedInfo,
+        setUpdatedInfo,
+        setHospitalList,
+      }}
+    >
+      {children}
+    </MyContext.Provider>
   );
 };
 
-export default App;
+export const useMyContext = () => useContext(MyContext) as MyContextInterface;
+export default MyContextProvider;
+// export const MyContextProvider = ({children,value}: MyContextType) => {
+//     <MyContext.Provider value={value}>
+//         {children}
+//     </MyContext.Provider>
+// }
