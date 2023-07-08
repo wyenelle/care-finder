@@ -2,7 +2,7 @@ import { useState } from "react";
 import { db } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useContext } from "react";
-import MyContext from "../../context/context";
+import {MyContext} from "../../context/context";
 import styles from "./admin.module.css";
 
 type Form = {
@@ -34,6 +34,7 @@ const Admin = () => {
 
   // using Context to make available the function that handles fetching of data from the db to the global state
   const { getHospital } = useContext(MyContext);
+
   // this function handles user input on the form
   const handleInput = (e : React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

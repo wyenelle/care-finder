@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import MyContext from "../../context/context";
+import {MyContext} from "../../context/context";
 import styles from "./hospital.module.css";
 
 const Hospital = () => {
