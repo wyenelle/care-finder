@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { db } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
-<<<<<<< HEAD
 import { useContext } from "react";
 import {MyContext} from "../../context/context";
-=======
 
-import { useMyContext } from "../../context/context";
->>>>>>> 2b5546ab4779e450d94fb91de0c7ebf90d8046ee
+
 import styles from "./admin.module.css";
 
 type Form = {
@@ -38,12 +35,9 @@ const Admin = () => {
   const hospitalCollection = collection(db, "hospitals");
 
   // using Context to make available the function that handles fetching of data from the db to the global state
-<<<<<<< HEAD
   const { getHospital } = useContext(MyContext);
 
-=======
-  const { getHospital } = useMyContext();
->>>>>>> 2b5546ab4779e450d94fb91de0c7ebf90d8046ee
+
   // this function handles user input on the form
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

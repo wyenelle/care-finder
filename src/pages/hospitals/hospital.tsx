@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import { useContext, useState } from "react";
 import {MyContext} from "../../context/context";
-=======
-import { useState } from "react";
-import { useMyContext } from "../../context/context";
->>>>>>> 2b5546ab4779e450d94fb91de0c7ebf90d8046ee
 import styles from "./hospital.module.css";
 
 const Hospital = () => {
@@ -15,7 +10,7 @@ const Hospital = () => {
     updateHospitalData,
     setUpdatedInfo,
     updatedInfo,
-  } = useMyContext();
+  } = useContext(MyContext);
 
   const [location, setLocation] = useState("");
 
@@ -61,8 +56,8 @@ const Hospital = () => {
               <div key={obj.id}>
                 <h2 style={{ textTransform: "capitalize" }}>{obj.name} </h2>
                 <div className={styles.contact}>
-                  <address>{obj.email} </address>
-                  <address>{obj.phone} </address>
+                  {/* <address>{obj.email} </address>
+                  <address>{obj.phone} </address> */}
                 </div>
                 <article className={styles.imgBox}></article>
                 <div>

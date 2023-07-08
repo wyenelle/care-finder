@@ -112,6 +112,6 @@ function App () {
       </MyContextProvider>
     </main>
   );
-};
+}
 
 export default App;
