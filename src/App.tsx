@@ -7,8 +7,8 @@ import Hospital from "./pages/hospitals/hospital";
 import Admin from "./pages/admin/admin";
 import { useState, useEffect } from "react";
 import {MyContextProvider} from "./context/context";
-import { auth,db } from "./config/firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { db } from "./config/firebase";
+// import { onAuthStateChanged } from "firebase/auth";
 import {
   getDocs,
   collection,
@@ -87,16 +87,16 @@ function App () {
 
   useEffect(() => {
     getHospital();
-  }, []);
+  },[]);
 
-  const get_user = onAuthStateChanged(auth, (user) => {
-    if (user) {
-      const uid = user.uid;
-      console.log(uid);
-    } else {
-      console.log(user);
-    }
-  });
+  // const get_user = onAuthStateChanged(auth, (user) => {
+  //   if (user) {
+  //     const uid = user.uid;
+  //     console.log(uid);
+  //   } else {
+  //     console.log(user);
+    // }
+  // });
 
   return (
     <main className={styles.container}>
