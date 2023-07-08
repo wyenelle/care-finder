@@ -29,8 +29,8 @@ export const MyContext = createContext   ({
     id: ''}],
   getHospital: () => {console.log('hi');
   },
-  deleteHospital: (id: string) => {console.log('hi')},
-  updateHospitalData: (id : string) => {console.log('hi')},
+  deleteHospital: (id: string) => {console.log(id)},
+  updateHospitalData: (id : string) => {console.log(id)},
   updatedInfo: {
     hospital: "",
     state: "",
@@ -42,8 +42,8 @@ setUpdatedInfo: (data: {
   state: string;
   address: string;
   details: string;
-}) => console.log('hi'),
-setHospitalList: (data:HospitalsDataType[]) => console.log('hi')
+}) => console.log(data),
+setHospitalList: (data:HospitalsDataType[]) => console.log(data)
 
 })
 
