@@ -87,7 +87,7 @@ function App () {
 
   useEffect(() => {
     getHospital();
-  },[]);
+  });
 
   // const get_user = onAuthStateChanged(auth, (user) => {
   //   if (user) {
