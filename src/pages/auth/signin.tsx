@@ -1,8 +1,6 @@
-import React from "react";
 import { auth } from "../../config/firebase";
 import {
   createUserWithEmailAndPassword,
-  signOut,
 } from "firebase/auth";
 import { useState } from "react";
 import styles from "./signin.module.css";
