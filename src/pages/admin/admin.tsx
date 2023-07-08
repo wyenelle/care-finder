@@ -1,42 +1,51 @@
 import { useState } from "react";
 import { db } from "../../config/firebase";
 import { addDoc, collection } from "firebase/firestore";
+<<<<<<< HEAD
 import { useContext } from "react";
 import {MyContext} from "../../context/context";
+=======
+
+import { useMyContext } from "../../context/context";
+>>>>>>> 2b5546ab4779e450d94fb91de0c7ebf90d8046ee
 import styles from "./admin.module.css";
 
 type Form = {
-  hospital: string,
-  state: string,
-  address: string,
-  details: string,
-  email: string,
-  phone: string,
-  website: string,
-  image: string,
-}
+  hospital: string;
+  state: string;
+  address: string;
+  details: string;
+  email: string;
+  phone: string;
+  website: string;
+  image: string;
+};
 
 const Admin = () => {
   // stores all alues from the form
-  const [form, setForm] = useState<Form> ({
+  const [form, setForm] = useState<Form>({
     hospital: "",
     state: "",
     address: "",
     details: "",
     email: "",
     phone: "",
-    website: '',
-    image: ""
+    website: "",
+    image: "",
   });
 
   //  creates a references to the hospitals collection in our database
   const hospitalCollection = collection(db, "hospitals");
 
   // using Context to make available the function that handles fetching of data from the db to the global state
+<<<<<<< HEAD
   const { getHospital } = useContext(MyContext);
 
+=======
+  const { getHospital } = useMyContext();
+>>>>>>> 2b5546ab4779e450d94fb91de0c7ebf90d8046ee
   // this function handles user input on the form
-  const handleInput = (e : React.ChangeEvent<HTMLInputElement>) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
@@ -52,7 +61,7 @@ const Admin = () => {
         email: form.email,
         phone: form.phone,
         image: form.image,
-        website: form.website
+        website: form.website,
       });
 
       console.log("submitted");
@@ -109,7 +118,6 @@ const Admin = () => {
             onChange={handleInput}
           />{" "}
         </div>
-        
         <div className={styles.formControl}>
           <label htmlFor="email">Email</label>
           <input
@@ -121,7 +129,6 @@ const Admin = () => {
             onChange={handleInput}
           />{" "}
         </div>
-
         <div className={styles.formControl}>
           <label htmlFor="url">Website</label>
           <input
@@ -133,7 +140,6 @@ const Admin = () => {
             onChange={handleInput}
           />{" "}
         </div>
-        
         <div className={styles.formControl}>
           <label htmlFor="phone">Phone</label>
           <input
@@ -145,7 +151,6 @@ const Admin = () => {
             onChange={handleInput}
           />{" "}
         </div>
-
         <br />
         <button className={styles.btn} onClick={handleSubmit}>
           {" "}

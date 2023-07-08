@@ -9,8 +9,23 @@ import { useState, useEffect } from "react";
 import {MyContextProvider} from "./context/context";
 import { auth,db } from "./config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { getDocs, collection,deleteDoc,doc,updateDoc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import Login from "./pages/auth/login";
+// export interface HospitalsDataType {
+//   state: string;
+//   name: string;
+//   address: string;
+//   details: string;
+//   email: string;
+//   phone: string;
+//   id: string;
+// }
 
 export type HospitalsDataType = {
   state: string,
@@ -58,18 +73,17 @@ function App () {
   };
 
   // delete an entry
-  const deleteHospital = async (id) => {
-    const hospitalRef = doc(db,'hospitals',id)
-    await deleteDoc(hospitalRef)
-  }
+  const deleteHospital = async (id: string) => {
+    const hospitalRef = doc(db, "hospitals", id);
+    await deleteDoc(hospitalRef);
+  };
 
   // update an entry
-  const updateHospitalData  = async (id) => {
-    const hospitalRef = doc(db,'hospitals',id)
-    await updateDoc(hospitalRef, {name : updatedInfo.hospital})
-    getHospital()
-
-  }
+  const updateHospitalData = async (id: string) => {
+    const hospitalRef = doc(db, "hospitals", id);
+    await updateDoc(hospitalRef, { name: updatedInfo.hospital });
+    getHospital();
+  };
 
   useEffect(() => {
     getHospital();
@@ -79,10 +93,8 @@ function App () {
     if (user) {
       const uid = user.uid;
       console.log(uid);
-      
     } else {
       console.log(user);
-      
     }
   });
 
@@ -100,6 +112,6 @@ function App () {
       </MyContextProvider>
     </main>
   );
-}
+};
 
 export default App;
