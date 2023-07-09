@@ -12,11 +12,9 @@ const HomeBody = () => {
         </div>
       </div>
       <div className={styles.img}>
-        <div className={styles.imgBox}>
-            <img src={helper.Hospital3} alt="" className={styles.img}/>
-        </div>
+            <img src={helper.Hospital3} alt="" className={styles.image}/>
         <div className={styles.imgContainer}>
-            <div className={styles.box}>
+            <div className={styles.box}> 
             {/* <img src={helper.Hospital2} alt="" className={styles.img2}/> */}
             </div>
             <div className={styles.box}>
