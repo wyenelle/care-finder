@@ -1,5 +1,5 @@
 .container{
-    /* border: 1px solid black; */
+    border: 1px solid black;
     height: 50vh;
     width: 100%;
     display: grid;
@@ -48,13 +48,18 @@
 }
 @media screen and (min-width:768px){
     .container{
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        margin: 1rem 0;
+        grid-template-columns: 40% 60%;
     }
     .text{
         display: flex;
         /* justify-content: center; */
         align-items: center;
+    }
+    .img{
+        height: 100%;
+        border: 3px solid red;
     }
    .text div{
         width: 70%;

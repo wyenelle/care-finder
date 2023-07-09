@@ -12,9 +12,8 @@ const Nav = () => {
         <h1>Carefinder</h1>
       </Link>
       <ul className={styles.listWrapper}>
-        <li className={styles.listItem}>
           <Link to="login" className={styles.auth}>login</Link>
-        </li>
+        
         <Link to="signin" className={styles.auth}> sign in</Link>
       </ul>
       {
