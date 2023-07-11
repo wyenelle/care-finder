@@ -1,5 +1,135 @@
+
 .container{
-    height: 30vh;
-    width: 100%;
-    border: 2px solid blue;
+    height: auto;
+    padding: 120px 0;
+    margin-top: 4rem;
 }
+.wrapper{
+    display: grid;
+    height: auto;
+    grid-template-columns: 1fr;
+}
+.col1{
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    height: 30vh;
+}
+.col2{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 12px;
+}
+.col1Wrapper{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.imgContainer{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+}
+.imgContainer h2{
+    font-weight: 600;
+    font-size: 17px;
+    color: white;
+}
+.col1 p{
+    font-weight: 400;
+}
+.col2{
+    display: grid;
+    grid-template-columns: 1fr;
+    color: white;
+}
+.academy{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.academy h2{
+    padding-left: 10px;
+    font-size: 17px;
+    font-weight: 600;
+}
+.list{
+    list-style: none;
+}
+.listItem{
+    margin: 10px;
+    font-size: 14px;
+}
+.footer{
+    color: white;
+    width: 88%;
+    display: flex;
+    padding: 20px;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+.footer p{
+    font-size: 15px;
+    font-weight: 400;
+}
+.footerImg{
+    display: flex;
+    gap: 10px;
+}
+@media screen and (min-width: 768px){
+    .container{
+        height: 70vh;
+        /* padding: 20px; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 3rem;
+        align-items: flex-start;
+        padding: 0;
+
+    }
+    .wrapper{
+        display: grid;
+        height: 70%;
+        grid-template-columns: 35% 65%;
+    }
+    .col1{
+        justify-content: flex-start;
+        padding:20px 0;
+        height: 100%;
+    }
+    .col1Wrapper{
+        height: 100%;
+    }
+    .col2{
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr  ;
+        padding: 0;
+    }
+    .academy{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .academyWrapper{
+        height: 85%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        padding-bottom: 10px;
+    }
+    .footer{
+        flex-direction: row;
+        padding: 0;
+        align-items: flex-start;
+        /* border: 2px solid yellow; */
+    }
+}
+/* #182233 */
