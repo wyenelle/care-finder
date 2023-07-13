@@ -19,6 +19,8 @@
     text-decoration: none;
     background-color: #0399FC;
     border: 1px solid #0399FC;
-    padding: 10px;
-    border-radius: 5[x];
+    padding: 7px;
+    color: black;
+    font-weight: 500;
+    border-radius: 5px;
 }

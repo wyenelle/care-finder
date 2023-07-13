@@ -38,6 +38,7 @@ const Hospital = () => {
           list="locations"
           name="location"
           onChange={(e) => setLocation(e.target.value)}
+          className={styles.input}
         />
         <datalist id="locations">
           <option value="lagos"></option>

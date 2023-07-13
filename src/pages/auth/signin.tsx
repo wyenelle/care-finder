@@ -46,6 +46,7 @@ const SignIn = () => {
   return (
     <section className={styles.container}>
       <form className={styles.form}>
+      <h1>Sign in </h1>
         <div className={styles.formControl}>
           <label htmlFor="email" className={styles.label}>
             Email
@@ -82,6 +83,9 @@ const SignIn = () => {
         </button>
          */}
       </form>
+      <section className={styles.col2}>
+
+      </section>
     </section>
   );
 };

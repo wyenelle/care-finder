@@ -17,6 +17,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import Login from "./pages/auth/login";
+import Footer from "./components/footer/foooter";
 // export interface HospitalsDataType {
 //   state: string;
 //   name: string;
@@ -109,6 +110,7 @@ function App () {
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+      <Footer/>
       </MyContextProvider>
     </main>
   );
