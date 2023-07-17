@@ -12,7 +12,7 @@ const Footer = () => {
             <h2>Care Finder</h2>
           </div>
           <p>
-            PIT Africa is an organisation that aims to bridge the gap between healthcare professionals in Africa and technology and also enable them to become problem solvers using technology.
+            Care Finder is an organisation that aims to bridge the gap between healthcare professionals in Africa and technology and also enable them to become problem solvers using technology.
           </p>
           </div>
         </section>
@@ -87,7 +87,7 @@ const Footer = () => {
 
       </div>
       <section className={styles.footer}>
-        <p> &copy; 2020 PIT Africa. All Right Reserved</p>
+        <p> &copy; 2020 Care Finder. All Right Reserved</p>
         <div className={styles.footerImg}>
           {/* <img src={helper.Facebook} alt='facebook'/>
           <img src={helper.LinkedIn} alt='linkedin'/>

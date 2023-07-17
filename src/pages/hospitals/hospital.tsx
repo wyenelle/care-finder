@@ -10,6 +10,7 @@ const Hospital = () => {
     updateHospitalData,
     setUpdatedInfo,
     updatedInfo,
+    user
   } = useContext(MyContext);
 
   const [location, setLocation] = useState("");
@@ -31,6 +32,7 @@ const Hospital = () => {
   );
   return (
     <section className={styles.container}>
+      {/* <h1>{user?.name}</h1> */}
       <div className={styles.head}>
         <h2> find hospitals around you</h2>
         <input

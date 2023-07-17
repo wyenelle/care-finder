@@ -1,5 +1,5 @@
 import { createContext } from "react"
-import { HospitalsDataType } from "../App"
+import { HospitalsDataType,UserType } from "../App"
 
 type ValueType = {
   hospitalsList: HospitalsDataType[],
@@ -18,7 +18,10 @@ setUpdatedInfo: React.Dispatch<React.SetStateAction<{
   address: string;
   details: string;
 }>>,
-setHospitalList: React.Dispatch<React.SetStateAction<HospitalsDataType[]>>
+setHospitalList: React.Dispatch<React.SetStateAction<HospitalsDataType[]>>,
+logout: () => Promise<void>,
+get_user: () => void,
+user: UserType | null,
 }
 
 export const MyContext = createContext   ({ 
@@ -43,8 +46,10 @@ setUpdatedInfo: (data: {
   address: string;
   details: string;
 }) => console.log(data),
-setHospitalList: (data:HospitalsDataType[]) => console.log(data)
-
+setHospitalList: (data:HospitalsDataType[]) => console.log(data),
+logout: () => {console.log('hi')},
+get_user: () => {console.log('hi')},
+user: {name: '',id:''} || null
 })
 
 type MyContextType = {

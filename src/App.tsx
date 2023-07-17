@@ -1,4 +1,4 @@
-  import styles from "./App.module.css";
+   import styles from "./App.module.css";
 import Home from "./pages/home/home";
 import Nav from "./components/navbar/Nav";
 import SignIn from "./pages/auth/signin";
@@ -7,8 +7,8 @@ import Hospital from "./pages/hospitals/hospital";
 import Admin from "./pages/admin/admin";
 import { useState, useEffect } from "react";
 import {MyContextProvider} from "./context/context";
-import { db } from "./config/firebase";
-// import { onAuthStateChanged } from "firebase/auth";
+import { db,auth } from "./config/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import {
   getDocs,
   collection,
@@ -35,6 +35,10 @@ export type HospitalsDataType = {
   details: string,
   id: string
 }
+export type UserType = {
+  name: string | null,
+  id: string | null
+}
 
 function App () {
   const [hospitalsList, setHospitalList] = useState<HospitalsDataType[]>([])
@@ -45,6 +49,7 @@ function App () {
     details: "",
     
 })
+const [user,setUser] = useState<UserType | null >(null)
 
   // creates a refernece to the hospital collection in te database
   const hospitalCollection = collection(db, "hospitals");
@@ -86,22 +91,28 @@ function App () {
     getHospital();
   };
 
+  const logout = async () => {
+    signOut(auth)
+  }
+  const get_user = onAuthStateChanged(auth, (currentUser) => {
+    if (currentUser) {
+      setUser({name: currentUser.displayName, id: currentUser.uid})
+      // console.log( currentUser.uid);
+    } else {
+      console.log(user);
+    }
+  });
   useEffect(() => {
     getHospital();
-  });
+    get_user()
+    return () => get_user()
+  },[user]);
 
-  // const get_user = onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     const uid = user.uid;
-  //     console.log(uid);
-  //   } else {
-  //     console.log(user);
-    // }
-  // });
+  
 
   return (
     <main className={styles.container}>
-      <MyContextProvider  value={{ hospitalsList, getHospital,deleteHospital,updateHospitalData,updatedInfo,setUpdatedInfo,setHospitalList }}>
+      <MyContextProvider  value={{ hospitalsList, getHospital,deleteHospital,updateHospitalData,updatedInfo,setUpdatedInfo,setHospitalList,logout,user,get_user }}>
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
