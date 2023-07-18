@@ -12,7 +12,7 @@ const Hospital = () => {
     updatedInfo,
     user
   } = useContext(MyContext);
-
+// console.log(user?.name)
   const [location, setLocation] = useState("");
 
   //  deletes an hospital from the collection by colleccting it's id here and passing it up to th deleting function

@@ -1,21 +1,25 @@
 import styles from './login.module.css'
 import { useState } from "react";
 import { auth, googleProvider } from "../../config/firebase";
-import { signInWithEmailAndPassword,signInWithPopup, FacebookAuthProvider  } from 'firebase/auth';
+import { signInWithEmailAndPassword,signInWithPopup, TwitterAuthProvider, GithubAuthProvider  } from 'firebase/auth';
 import GoogleButton from 'react-google-button';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-  const provider = new FacebookAuthProvider()
+
+    // Auth providers
+    const TwProvider = new TwitterAuthProvider()
+    const githubProvider = new GithubAuthProvider()
+
     const logIn = async () => {
         try{
-            const user = await signInWithEmailAndPassword(auth,email,password)
-            console.log(user.user);
+           await signInWithEmailAndPassword(auth,email,password)
         } catch(err){
             console.log(err);
         }
     }
+//  login with google
     const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
@@ -23,31 +27,22 @@ const Login = () => {
       console.error(err);
     }
   };
-  const signInWithFacebook = async () => {
+  // login with facebook
+  const signInWithTwitter = async () => {
+    try{
+      await signInWithPopup(auth, TwProvider)
+    }  catch(err){
+      console.log(err); 
+    }
+  }
+  //  login with github
+  const signInWithGithub = async () => {
+    try{
+        await signInWithPopup(auth, githubProvider)
 
-signInWithPopup(auth, provider)
-  .then((result) => {
-    // The signed-in user info.
-    const fbuser = result.user;
-
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    const credential = FacebookAuthProvider.credentialFromResult(result);
-    const accessToken = credential?.accessToken;
-
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  })
-  .catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.customData.email;
-    // The AuthCredential type that was used.
-    const credential = FacebookAuthProvider.credentialFromError(error);
-
-    // ...
-  });
+      } catch(err)  {
+        console.log(err);
+      }
   }
 
   return (
@@ -83,7 +78,9 @@ signInWithPopup(auth, provider)
 
          <div className={styles.socialMediaLogin}>
           <GoogleButton onClick={signInWithGoogle}/>
-        <button onClick={signInWithFacebook}>facebook</button>
+        <button onClick={signInWithTwitter}>Twitter</button><br /><br />
+        <button onClick={signInWithGithub}>Github</button>
+
         </div> 
       </form>
     </section>

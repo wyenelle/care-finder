@@ -28,6 +28,9 @@ import Footer from "./components/footer/foooter";
 //   id: string;
 // }
 
+// 8a253799878e2cb50f60 
+// 215f648b6712d03003cd0d9d52786bfad1e1132a
+
 export type HospitalsDataType = {
   state: string,
   name: string,
@@ -105,8 +108,8 @@ const [user,setUser] = useState<UserType | null >(null)
   useEffect(() => {
     getHospital();
     get_user()
-    return () => get_user()
-  },[user]);
+    // return () => get_user()
+  },[]);
 
   
 
